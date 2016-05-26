@@ -20,6 +20,8 @@
 
 - (void)getCropRegion:(void(^)(CGRect))completeBlock;
 
+- (void)stopPlayingIfNecessary;
+
 //for lately crop
 +(void)cropPhAsset:(PHAsset *)asset withRegion:(CGRect)rect onComplete:(void(^)(id))completion;
 

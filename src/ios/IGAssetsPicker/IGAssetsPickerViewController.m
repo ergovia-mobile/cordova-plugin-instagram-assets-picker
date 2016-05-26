@@ -45,7 +45,10 @@
 
 }
 
-
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 - (NSMutableArray *)assets {
     if (_assets == nil) {
@@ -109,7 +112,7 @@
 
         rect = CGRectMake((CGRectGetWidth(navView.bounds)-100)/2, 0, 100, CGRectGetHeight(navView.bounds));
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:rect];
-        titleLabel.text = @"SELECT";
+        titleLabel.text = @"Auswählen";
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textColor = [UIColor whiteColor];
@@ -149,8 +152,8 @@
         [self.topView addSubview:self.cropView];
         [self.topView sendSubviewToBack:self.cropView];
 
-        self.maskView = [[UIImageView alloc] initWithFrame:rect];
-        self.maskView.image = [UIImage imageNamed:@"InstagramAssetsPicker.bundle/straighten-grid"];
+        //self.maskView = [[UIImageView alloc] initWithFrame:rect];
+        //self.maskView.image = [UIImage imageNamed:@"InstagramAssetsPicker.bundle/straighten-grid"];
 
         UIPanGestureRecognizer *cropViewPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(cropViewPanGestureAction:)];
         [self.cropView addGestureRecognizer:cropViewPanGesture];
@@ -199,6 +202,7 @@
 }
 
 - (void)backAction {
+    [self.cropView stopPlayingIfNecessary];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 

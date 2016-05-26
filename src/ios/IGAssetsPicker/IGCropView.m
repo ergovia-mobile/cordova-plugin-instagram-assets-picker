@@ -534,6 +534,20 @@ static CGRect IGScaleRect(CGRect rect, CGFloat scale)
         self.videoStartMaskView.hidden = YES;
 
 
+    } else if((self.videoPlayer) && (_playState == 1)) {
+        _playState = 2;
+        [self.videoPlayer pause];
+        self.videoStartMaskView.hidden = NO;
+    }
+    
+}
+
+-(void) stopPlayingIfNecessary
+{
+    if((self.videoPlayer) && (_playState == 1)) {
+        _playState = 2;
+        [self.videoPlayer stop];
+        self.videoStartMaskView.hidden = NO;
     }
 }
 
